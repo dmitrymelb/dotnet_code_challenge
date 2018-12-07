@@ -30,7 +30,10 @@ namespace dotnet_code_challenge
             }
             catch (AggregateException e)
             {
-                Console.WriteLine($"Error processing racing data: {e.Message}");
+                foreach (var currentException in e.InnerExceptions)
+                {
+                    Console.WriteLine($"\nException processing racing data: {currentException.Message}; call stack: {currentException.StackTrace}\n\n");
+                }
                 throw;
             }
 
